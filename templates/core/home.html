@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+&lt;div class="hero-section">
+&lt;h1>Welcome to MarketHub!&lt;/h1>
+&lt;p>Your one-stop shop for amazing products. Buy and sell with ease.&lt;/p>
+&lt;a href="{% url 'product_list' %}" class="btn">Browse Products&lt;/a>
+&lt;/div>
+
+        <section class="info-section">
+            <h2>Why Choose MarketHub?</h2>
+            <ul>
+                <li>Wide variety of products.</li>
+                <li>Secure transactions.</li>
+                <li>Easy to use interface.</li>
+                <li>Support local sellers.</li>
+            </ul>
+        </section>
+    {% endblock %}
+    
