@@ -1,1 +1,72 @@
-html {% extends 'base.html' %} {% block title %}Login{% endblock %} {% block content %} <h2>Login to MarketHub</h2> <form method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit" class="btn">Login</button> </form> <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p> {% endblock %}
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <h2>Login to MarketHub</h2>
+    <form method="post">
+        {% csrf_token %} {# Essential for security - do not remove! #}
+        <p>
+            {# Render the username field #}
+            {{ form.username.label_tag }} {# Label for the username input #}
+            {{ form.username }} {# The actual username input field #}
+            {% if form.username.errors %} {# Display any errors specific to the username field #}
+                <ul class="errorlist">{% for error in form.username.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+        </p>
+
+        <p>
+            {# Render the password field with the new toggle functionality #}
+            {{ form.password.label_tag }} {# Label for the password input #}
+            <div class="password-container"> {# Container to position the password input and toggle icon #}
+                <input type="password"
+                       name="{{ form.password.name }}" {# Django's auto-generated name for the password field #}
+                       id="{{ form.password.id_for_label }}" {# Django's auto-generated ID for the password field #}
+                       {% if form.password.value %}value="{{ form.password.value }}"{% endif %} {# Pre-fill if there's a value (e.g., after invalid submission) #}
+                       class="{{ form.password.css_classes }}" {# Apply Django's default CSS classes #}
+                       autocomplete="current-password" {# Helps browsers remember password for this site #}
+                       required> {# Mark as a required field #}
+                <span class="toggle-password"
+                      onclick="togglePasswordVisibility('{{ form.password.id_for_label }}', this)">
+                    &#128065; <!-- Unicode Eye Emoji (visible) - this is the default icon -->
+                </span>
+            </div>
+            {% if form.password.errors %} {# Display any errors specific to the password field #}
+                <ul class="errorlist">{% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+        </p>
+
+        {% if form.non_field_errors %} {# Display any form-wide errors (e.g., invalid credentials) #}
+            <ul class="errorlist">{% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <button type="submit" class="btn">Login</button> {# Submit button for the form #}
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p> {# Link to the registration page #}
+
+    {# JavaScript for the password toggle functionality #}
+    <script>
+        // Function to toggle the type of the password input field
+        function togglePasswordVisibility(passwordFieldId, toggleElement) {
+            const passwordField = document.getElementById(passwordFieldId); // Get the password input element by its ID
+            if (passwordField.type === "password") {
+                // If currently hidden, change to text to show password
+                passwordField.type = "text";
+                toggleElement.innerHTML = '&#128064;'; // Change icon to hidden eye emoji
+                toggleElement.setAttribute('aria-label', 'Hide password'); // Update accessibility label
+            } else {
+                // If currently visible, change back to password to hide it
+                passwordField.type = "password";
+                toggleElement.innerHTML = '&#128065;'; // Change icon to visible eye emoji
+                toggleElement.setAttribute('aria-label', 'Show password'); // Update accessibility label
+            }
+        }
+
+        // Add a listener to set the initial accessibility label for the toggle icon
+        // This ensures screen readers know what the icon does when the page first loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleElement = document.querySelector('.toggle-password');
+            if (toggleElement) { // Check if the element exists on the page
+                toggleElement.setAttribute('aria-label', 'Show password');
+            }
+        });
+    </script>
+{% endblock %}
