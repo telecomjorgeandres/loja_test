@@ -303,3 +303,30 @@ footer {
         width: 100%; /* Full width on smaller screens */
     }
 }
+.password-container {
+    position: relative; /* KEY: Allows absolute positioning of children */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: calc(100% - 40px); /* Adjust width to leave space for icon */
+    padding-right: 35px; /* Prevent text from overlapping icon */
+}
+
+.toggle-password {
+    position: absolute; /* KEY: Position relative to its parent (.password-container) */
+    right: 10px;        /* 10px from the right edge of the container */
+    top: 50%;           /* Vertically center to 50% of parent's height */
+    transform: translateY(-50%); /* Adjust to truly center, as top:50% sets top *edge* at 50% */
+    cursor: pointer;    /* Changes mouse to a hand, indicating clickable */
+    color: #555;
+    font-size: 1.2rem;
+    line-height: 1;     /* Helps with emoji vertical alignment */
+    user-select: none;  /* Prevents accidental text selection of the emoji */
+}
+
+.toggle-password:hover {
+    color: #000; /* Subtle visual feedback on hover */
+}
