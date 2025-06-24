@@ -1,48 +1,104 @@
 {% load static %}
-&lt;!DOCTYPE html>
-&lt;html lang="en">
-&lt;head>
-&lt;meta charset="UTF-8">
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
-&lt;title>MarketHub {% block title %}{% endblock %}&lt;/title>
-&lt;link rel="stylesheet" href="{% static 'css/style.css' %}">
-&lt;/head>
-&lt;body>
-&lt;header>
-&lt;nav>
-&lt;div class="logo">
-&lt;a href="{% url 'home' %}">MarketHub&lt;/a>
-&lt;/div>
-&lt;ul class="nav-links">
-&lt;li>&lt;a href="{% url 'product_list' %}">Products&lt;/a>&lt;/li>
-{% if user.is_authenticated %}
-&lt;li>&lt;a href="{% url 'product_create' %}">Sell Product&lt;/a>&lt;/li>
-&lt;li>Hello, {{ user.username }}!&lt;/li>
-&lt;li>&lt;a href="{% url 'logout' %}">Logout&lt;/a>&lt;/li>
-{% else %}
-&lt;li>&lt;a href="{% url 'login' %}">Login&lt;/a>&lt;/li>
-&lt;li>&lt;a href="{% url 'register' %}">Register&lt;/a>&lt;/li>
-{% endif %}
-&lt;/ul>
-&lt;/nav>
-&lt;/header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketHub - {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --text-light: #222222;
+      --bg-dark: #121212;
+      --text-dark: #f1f1f1;
+    }
 
-        <main>
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-            {% block content %}
-            {% endblock %}
-        </main>
+    #theme-toggle:checked ~ main,
+    #theme-toggle:checked ~ footer,
+    #theme-toggle:checked ~ header,
+    #theme-toggle:checked ~ body {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
 
-        <footer>
-            <p>&copy; 2025 MarketHub. All rights reserved.</p>
-        </footer>
-    </body>
-    </html>
-    
+    .theme-switch {
+      position: fixed;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 999;
+      font-family: sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .theme-switch input {
+      display: none;
+    }
+
+    .theme-switch label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background: #ddd;
+      padding: 0.3rem 0.6rem;
+      border-radius: 1rem;
+    }
+
+    .theme-switch span {
+      margin-left: 0.5rem;
+    }
+
+    /* Dark mode style toggle */
+    #theme-toggle:checked + label {
+      background: #444;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-switch">
+  <input type="checkbox" id="theme-toggle">
+  <label for="theme-toggle">🌗 Dark Mode</label>
+</div>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="{% url 'home' %}">MarketHub</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="{% url 'product_list' %}">Products</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'product_create' %}">Sell Product</a></li>
+          <li class="username">Hello, {{ user.username }}!</li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MarketHub. All rights reserved.</p>
+  </footer>
+</body>
+</html>

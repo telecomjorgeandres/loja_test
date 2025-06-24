@@ -6,22 +6,31 @@ def home(request):
         return render(request, 'core/home.html')
 
 def register(request):
+    # This block handles form submissions (POST requests)
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreationForm(request.POST) # Create form with submitted data
         if form.is_valid():
-                form.save()
-                username = form.cleaned_data.get('username')
-                messages.success(request, f'Account created for {username}! You can now log in.')
-                return redirect('login')
+            # If data is valid, save user and redirect
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}! You can now log in.')
+            return redirect('login') # IMPORTANT: Always redirect after successful POST
         else:
+            # If data is NOT valid, add a general error message.
+            # The 'form' object (which holds user's input and specific errors)
+            # will then be passed to the render statement below.
             messages.error(request, 'Please correct the errors below.')
-         # This block runs for GET requests (when the page is first loaded).
-        # We create a fresh, empty form to display.
-           
+            # NO return HERE. We want to fall through to the final render.
+    # This block handles initial page loads (GET requests)
     else:
-            form = UserCreationForm()
-    # This single render statement handles both:
-    # 1. Initial GET requests (displaying the empty form).
-    # 2. Invalid POST requests (re-displaying the form with user's input and errors).
-            return render(request, 'core/register.html', {'form': form})
+        # For a GET request, create an empty form to display to the user.
+        form = UserCreationForm()
+    
+    # This is the SINGLE return render statement for the entire view.
+    # It will render the 'register.html' template with the 'form' object:
+    # - If it was a GET request: 'form' will be an empty UserCreationForm.
+    # - If it was an invalid POST request: 'form' will contain the user's
+    #   submitted data AND all validation errors, which Django's template
+    #   engine will automatically display.
+    return render(request, 'core/register.html', {'form': form})
     
