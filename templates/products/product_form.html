@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    {# Display the dynamic title (e.g., "List a New Product" or "Edit Product Name") #}
+    <h2>{{ title }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {# Django's security token for forms #}
+        {{ form.as_p }} {# Renders all form fields as paragraphs #}
+        <button type="submit" class="btn">
+            {# Change button text based on whether it's a create or update form #}
+            {% if product %} {# If 'product' object exists in context, it's an update #}
+                Update Product
+            {% else %} {# Otherwise, it's a new product creation #}
+                List Product
+            {% endif %}
+        </button>
+    </form>
+{% endblock %}

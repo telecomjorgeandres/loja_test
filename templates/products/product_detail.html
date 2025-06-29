@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+    <div class="product-detail">
+        <h1>{{ product.name }}</h1>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="detail-image">
+        {% else %}
+            <img src="https://placehold.co/600x400/cccccc/333333?text=No+Image" alt="No image available" class="detail-image">
+        {% endif %}
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Category:</strong> {{ product.category.name }}</p>
+        <p><strong>Seller:</strong> {{ product.seller.username }}</p>
+        <p>{{ product.description }}</p>
+        <p><small>Listed on: {{ product.created_at|date:"M d, Y" }}</small></p>
+    </div>
+    
+        {# NEW: Edit and Delete buttons, visible only to the product's seller #}
+        {% if user.is_authenticated and user == product.seller %}
+            <div class="product-actions">
+                <a href="{% url 'product_update' product.pk %}" class="btn">Edit Product</a>
+                <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger">Delete Product</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,17 +1,19 @@
 /* marketplace_project/static/css/style.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif; /* Changed font to Inter as per guidelines */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Default light background */
-    color: #333; /* Default dark text */
+    background-color: var(--bg-light); /* Use CSS variables for theme */
+    color: var(--text-light); /* Use CSS variables for theme */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
     background-color: #333;
     color: #fff;
-    padding: 1rem 0; /* Adjusted from 0.8rem for consistency with initial */
+    padding: 1rem 0;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -28,6 +30,7 @@ nav {
     text-decoration: none;
     font-size: 1.8rem;
     font-weight: bold;
+    border-radius: 5px; /* Rounded corners */
 }
 
 .nav-links {
@@ -42,73 +45,207 @@ nav {
     color: #fff;
     text-decoration: none;
     font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #555;
+}
+
+/* Ensure username also adapts to dark mode */
+.nav-links li.username {
+    color: #fff; /* Default light mode color */
+    font-size: 1.1rem;
+    padding: 8px 0;
 }
 
 main {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--bg-light); /* Use CSS variables for theme */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
 h1, h2 {
-    color: #333;
+    color: var(--text-light); /* Use CSS variables for theme */
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* --- Home Page Specific Styles --- */
+
 .hero-section {
     text-align: center;
-    padding: 50px 20px;
-    background-color: #e2e2e2;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    padding: 80px 20px; /* More vertical padding */
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient */
+    color: #fff;
+    border-radius: 12px; /* More rounded corners */
+    margin-bottom: 40px; /* More space below */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero-section h1 {
-    font-size: 3rem;
+    font-size: 3.5rem; /* Larger heading */
     margin-bottom: 15px;
+    color: #fff; /* Ensure white text on dark background */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for pop */
 }
 
-.hero-section p {
-    font-size: 1.2rem;
+.hero-section .tagline {
+    font-size: 1.5rem; /* Larger tagline */
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.features-section {
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    background-color: var(--bg-light); /* Use CSS variables for theme */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.features-section h2 {
+    font-size: 2.5rem;
+    color: var(--text-light); /* Use CSS variables for theme */
     margin-bottom: 30px;
 }
 
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px; /* Increased gap */
+}
+
+.feature-card {
+    background-color: var(--bg-light); /* Use CSS variables for theme */
+    border: 1px solid #eee;
+    border-radius: 10px; /* Rounded corners */
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h3 {
+    font-size: 1.6rem;
+    color: #007bff; /* Highlight feature titles */
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-light); /* Use CSS variables for theme */
+}
+
+.call-to-action-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f8f8; /* Lighter background for contrast */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--text-light); /* Use CSS variables for theme */
+}
+
+.call-to-action-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--text-light); /* Use CSS variables for theme */
+}
+
+.call-to-action-section p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* --- General Button Styles (Enhanced) --- */
 .btn {
     display: inline-block;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px; /* More rounded corners */
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
+    border: none; /* Ensure no default button border */
+    cursor: pointer;
+}
+
+.btn-primary {
     background-color: #007bff;
     color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border: 2px solid #007bff;
 }
 
-.btn:hover {
+.btn-primary:hover {
     background-color: #0056b3;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.info-section ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: 2px solid #6c757d;
 }
 
-.info-section li {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 200px;
-    text-align: center;
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 2px solid #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-text {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    color: var(--text-light); /* Use CSS variables for theme */
+}
+
+.cta-text a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cta-text a:hover {
+    text-decoration: underline;
+}
+
 
 /* Forms */
 form p {
@@ -119,6 +256,7 @@ form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: var(--text-light); /* Ensure label color adapts to theme */
 }
 
 form input[type="text"],
@@ -132,76 +270,37 @@ form select {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    background-color: var(--bg-light); /* Ensure form inputs adapt to theme */
+    color: var(--text-light); /* Ensure form inputs adapt to theme */
 }
 
-form button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-}
-
-form button[type="submit"]:hover {
-    background-color: #218838;
-}
-
-/* Messages - Enhanced for User Feedback */
+/* Messages */
 .messages {
     list-style: none;
-    padding: 0; /* Remove default ul padding */
+    padding: 10px;
     margin: 20px 0;
     border-radius: 5px;
 }
 
 .messages li {
-    padding: 15px; /* Increased padding */
+    padding: 10px;
     margin-bottom: 5px;
     border-radius: 5px;
-    font-size: 1rem; /* Ensured font size */
-    line-height: 1.4;
-    opacity: 0;
-    animation: fadeIn 0.6s ease forwards;
 }
 
-/* Success message with shadow and icon */
 .messages .success {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
-    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
 }
 
-.messages .success::before {
-    content: "✔️ ";
-    margin-right: 5px;
-}
-
-/* Error message with shadow and icon */
 .messages .error {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
-    box-shadow: 0 2px 5px rgba(220, 53, 69, 0.2);
 }
 
-.messages .error::before {
-    content: "❌ ";
-    margin-right: 5px;
-}
-
-/* Animation keyframes for fade in */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-/* Product List */
+/* Product List & Card */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -209,24 +308,32 @@ form button[type="submit"]:hover {
 }
 
 .product-card {
-    background-color: #f9f9f9;
+    background-color: var(--bg-light); /* Use CSS variables for theme */
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    padding-bottom: 15px; /* Add some padding at the bottom */
+    padding-bottom: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
 }
 
 .product-card img {
     width: 100%;
-    height: 200px; /* Fixed height for consistency */
+    height: 200px;
     object-fit: cover;
-    display: block; /* Remove extra space below image */
+    display: block;
+    border-radius: 8px 8px 0 0; /* Rounded top corners for image */
 }
 
 .product-card h3 {
     margin: 15px 15px 5px 15px;
     font-size: 1.3rem;
+    color: var(--text-light); /* Use CSS variables for theme */
 }
 
 .product-card h3 a {
@@ -241,12 +348,16 @@ form button[type="submit"]:hover {
 .product-card p {
     margin: 5px 15px;
     font-size: 0.95rem;
+    color: var(--text-light); /* Use CSS variables for theme */
 }
 
 /* Product Detail */
 .product-detail {
     text-align: center;
     padding: 20px;
+    background-color: var(--bg-light); /* Use CSS variables for theme */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail .detail-image {
@@ -254,18 +365,61 @@ form button[type="submit"]:hover {
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail h1 {
     font-size: 2.5rem;
     margin-bottom: 15px;
+    color: var(--text-light); /* Use CSS variables for theme */
 }
 
 .product-detail p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 10px;
+    color: var(--text-light); /* Use CSS variables for theme */
 }
+
+.product-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Delete Confirmation Page */
+.confirm-delete {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--bg-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+.confirm-delete h2 {
+    color: #dc3545; /* Red for danger */
+    font-size: 2rem;
+}
+
+.confirm-delete p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: var(--text-light);
+}
+
+.confirm-delete form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.confirm-delete .btn {
+    width: 100%;
+}
+
 
 /* Footer */
 footer {
@@ -277,6 +431,120 @@ footer {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
+
+/* --- Dark Mode Specific Overrides --- */
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode header {
+    background-color: #222;
+}
+
+body.dark-mode .logo a,
+body.dark-mode .nav-links li a,
+body.dark-mode .nav-links li.username {
+    color: var(--text-dark);
+}
+
+body.dark-mode .nav-links li a:hover {
+    background-color: #333;
+}
+
+body.dark-mode main {
+    background-color: #1a1a1a;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode .hero-section h1,
+body.dark-mode .hero-section .tagline,
+body.dark-mode .features-section h2,
+body.dark-mode .feature-card h3,
+body.dark-mode .feature-card p,
+body.dark-mode .call-to-action-section h2,
+body.dark-mode .call-to-action-section p,
+body.dark-mode .cta-text,
+body.dark-mode .product-card h3,
+body.dark-mode .product-card p,
+body.dark-mode .product-detail h1,
+body.dark-mode .product-detail p,
+body.dark-mode .confirm-delete h2,
+body.dark-mode .confirm-delete p,
+body.dark-mode form label,
+body.dark-mode form input[type="text"],
+body.dark-mode form input[type="email"],
+body.dark-mode form input[type="password"],
+body.dark-mode form input[type="number"],
+body.dark-mode form textarea,
+body.dark-mode form select {
+    color: var(--text-dark);
+}
+
+body.dark-mode .hero-section {
+    background: linear-gradient(135deg, #004d99, #002b5c); /* Darker blue gradient */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .features-section,
+body.dark-mode .feature-card,
+body.dark-mode .call-to-action-section,
+body.dark-mode .product-card,
+body.dark-mode .product-detail,
+body.dark-mode .confirm-delete {
+    background-color: #222;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-color: #444; /* Darker border */
+}
+
+body.dark-mode .feature-card:hover,
+body.dark-mode .product-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode footer {
+    background-color: #222;
+}
+
+/* --- Password Toggle Specific Styles (Integrated) --- */
+.password-container {
+    position: relative;
+    width: 100%; /* Ensure it spans the full width of its parent form element */
+    margin-bottom: 15px; /* Adjust spacing as needed */
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: calc(100% - 40px); /* Leave space for the toggle icon on the right */
+    padding-right: 35px; /* Ensure text doesn't flow under the icon */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px; /* Position from the right edge of the container */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for true vertical centering */
+    cursor: pointer; /* Indicates it's clickable */
+    color: #555; /* Default icon color */
+    font-size: 1.2rem; /* Size of the emoji/icon */
+    line-height: 1; /* Helps with emoji vertical alignment */
+    user-select: none; /* Prevent text selection on the icon */
+}
+
+.toggle-password:hover {
+    color: #000; /* Darken on hover for feedback */
+}
+
+/* Dark mode adjustments for password toggle */
+body.dark-mode .toggle-password {
+    color: #bbb; /* Lighter color for visibility in dark mode */
+}
+body.dark-mode .toggle-password:hover {
+    color: #fff;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -290,7 +558,27 @@ footer {
         align-items: center;
     }
 
-    .info-section ul {
+    .nav-links li:last-child { /* Reset margin for mobile */
+        margin-right: 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section .tagline {
+        font-size: 1.2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr; /* Stack features on small screens */
+    }
+
+    .feature-card {
+        margin-bottom: 15px; /* Add space between stacked cards */
+    }
+
+    .info-section ul { /* This rule might be redundant if using features-grid */
         flex-direction: column;
     }
 
@@ -299,34 +587,20 @@ footer {
     form input[type="password"],
     form input[type="number"],
     form textarea,
-    form select {
+    form select,
+    .password-container input { /* Include password input in responsive width */
         width: 100%; /* Full width on smaller screens */
+        padding-right: 10px; /* Reset padding for mobile if toggle not needed or adjusted */
     }
-}
-.password-container {
-    position: relative; /* KEY: Allows absolute positioning of children */
-    width: 100%;
-    margin-bottom: 15px;
-}
 
-.password-container input[type="password"],
-.password-container input[type="text"] {
-    width: calc(100% - 40px); /* Adjust width to leave space for icon */
-    padding-right: 35px; /* Prevent text from overlapping icon */
-}
+    .password-container input[type="password"],
+    .password-container input[type="text"] {
+        width: calc(100% - 40px); /* Maintain space for toggle on mobile */
+        padding-right: 35px;
+    }
 
-.toggle-password {
-    position: absolute; /* KEY: Position relative to its parent (.password-container) */
-    right: 10px;        /* 10px from the right edge of the container */
-    top: 50%;           /* Vertically center to 50% of parent's height */
-    transform: translateY(-50%); /* Adjust to truly center, as top:50% sets top *edge* at 50% */
-    cursor: pointer;    /* Changes mouse to a hand, indicating clickable */
-    color: #555;
-    font-size: 1.2rem;
-    line-height: 1;     /* Helps with emoji vertical alignment */
-    user-select: none;  /* Prevents accidental text selection of the emoji */
-}
-
-.toggle-password:hover {
-    color: #000; /* Subtle visual feedback on hover */
+    .confirm-delete {
+        margin: 20px auto;
+        padding: 20px;
+    }
 }

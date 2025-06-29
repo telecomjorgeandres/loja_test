@@ -20,17 +20,27 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
+    /* Apply dark mode styles to specific elements when checkbox is checked */
     #theme-toggle:checked ~ main,
     #theme-toggle:checked ~ footer,
     #theme-toggle:checked ~ header,
-    #theme-toggle:checked ~ body {
+    #theme-toggle:checked ~ body { /* Target body for overall background/text */
       background-color: var(--bg-dark);
       color: var(--text-dark);
     }
+    /* Ensure nav links also adapt */
+    #theme-toggle:checked ~ header nav .nav-links li a {
+        color: var(--text-dark); /* Ensure links are visible in dark mode */
+    }
+    #theme-toggle:checked ~ header nav .logo a {
+        color: var(--text-dark); /* Ensure logo is visible in dark mode */
+    }
+
 
     .theme-switch {
       position: fixed;
-      top: 0.5rem;
+      /* ADJUSTED: Move down to clear the header/nav */
+      top: 4rem; /* Increased from 0.5rem to push it below the header */
       right: 0.5rem;
       z-index: 999;
       font-family: sans-serif;
@@ -59,13 +69,18 @@
       background: #444;
       color: #fff;
     }
+
+    /* Optional: Add some margin to the last nav item to give space for the toggle */
+    .nav-links li:last-child {
+        margin-right: 4rem; /* Adjust as needed */
+    }
   </style>
 </head>
 <body>
   <div class="theme-switch">
-  <input type="checkbox" id="theme-toggle">
-  <label for="theme-toggle">🌗 Dark Mode</label>
-</div>
+    <input type="checkbox" id="theme-toggle">
+    <label for="theme-toggle">🌗 Dark Mode</label>
+  </div>
 
   <header>
     <nav>
@@ -76,8 +91,16 @@
         <li><a href="{% url 'product_list' %}">Products</a></li>
         {% if user.is_authenticated %}
           <li><a href="{% url 'product_create' %}">Sell Product</a></li>
+          {# NEW: Link to the 'My Products' page #}
+          <li><a href="{% url 'my_products' %}">My Products</a></li> {# This is the newly added line #}
           <li class="username">Hello, {{ user.username }}!</li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {# MODIFIED: Logout link changed to a form for POST request #}
+          <li>
+              <form class="logout-form" action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Logout</button>
+              </form>
+          </li>
         {% else %}
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'register' %}">Register</a></li>
@@ -85,7 +108,7 @@
       </ul>
     </nav>
   </header>
-  
+
   <main>
     {% if messages %}
       <ul class="messages">
@@ -100,5 +123,29 @@
   <footer>
     <p>&copy; 2025 MarketHub. All rights reserved.</p>
   </footer>
+
+  <script>
+    // JavaScript for theme toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            themeToggle.checked = true;
+            document.body.classList.add('dark-mode'); // Add a class for more specific dark mode styling if needed
+        }
+
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                localStorage.setItem('theme', 'dark');
+                document.body.classList.add('dark-mode');
+            } else {
+                localStorage.setItem('theme', 'light');
+                document.body.classList.remove('dark-mode');
+            }
+        });
+    });
+  </script>
 </body>
 </html>

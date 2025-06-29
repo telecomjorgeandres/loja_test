@@ -8,8 +8,30 @@ from django.http import HttpResponseForbidden
 from django.contrib import messages
 
 def product_list(request):
+    # Start with all active products
     products = Product.objects.filter(is_active=True).select_related('category', 'seller')
-    context = {'products': products}
+    
+    query = request.GET.get('q') # Get the search query from the URL parameter 'q'
+    if query:
+        # Filter products where name OR description contains the query (case-insensitive)
+        products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        
+        # Add a message if no products are found for the search query
+        if not products.exists():
+            messages.info(request, f"No products found for '{query}'.")
+        else:
+            messages.info(request, f"Showing search results for '{query}'.")
+
+    # --- DEBUGGING LINE ---
+    print(f"Search Query: '{query}'")
+    print(f"Filtered Products Queryset: {products}")
+    print(f"Number of products in queryset: {products.count()}")
+    # --- END DEBUGGING LINE ---
+
+    context = {
+        'products': products, # This is the filtered queryset (or all products if no query)
+        'query': query # Pass the query back to the template to pre-fill the search bar
+    }
     return render(request, 'products/product_list.html', context)
 
 def product_detail(request, pk):
@@ -44,8 +66,6 @@ def my_products(request):
 def product_update(request, pk):
     product = get_object_or_404(Product, pk=pk, is_active=True)
 
-    # Security check: Ensure the logged-in user is the seller of the product
-    # IMPORTANT: Comparing primary keys (pk) is a more explicit and reliable way to check ownership.
     if product.seller.pk != request.user.pk:
         messages.error(request, "You are not authorized to edit this product.")
         return redirect('product_detail', pk=product.pk)
@@ -70,8 +90,6 @@ def product_update(request, pk):
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk, is_active=True)
 
-    # Security check: Ensure the logged-in user is the seller of the product
-    # IMPORTANT: Comparing primary keys (pk) is a more explicit and reliable way to check ownership.
     if product.seller.pk != request.user.pk:
         messages.error(request, "You are not authorized to delete this product.")
         return redirect('product_detail', pk=product.pk)
