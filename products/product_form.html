@@ -44,11 +44,9 @@
             {{ form.image }}
             <small class="help-text">Upload an image for your product (optional).</small> {# Image upload hint #}
             {% if product.image %} {# Display current image if editing #}
-                {# NEW: Wrap image and text in a div for proper stacking and centering #}
-                <div style="text-align: center; margin-top: 10px;">
-                    <img src="{{ product.image.url }}" alt="Current Product Image" style="max-width: 150px; height: auto; border-radius: 5px; display: block; margin: 0 auto;">
-                    <small style="display: block; margin-top: 5px;">Current Image</small>
-                </div>
+                <br>
+                <img src="{{ product.image.url }}" alt="Current Product Image" style="max-width: 150px; height: auto; margin-top: 10px; border-radius: 5px;">
+                <small>Current Image</small>
             {% endif %}
             {% if form.image.errors %}
                 <ul class="errorlist">{% for error in form.image.errors %}<li>{{ error }}</li>{% endfor %}</ul>

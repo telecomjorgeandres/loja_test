@@ -1,11 +1,10 @@
 /* marketplace_project/static/css/style.css */
 body {
-    font-family: 'Inter', sans-serif; /* Changed font to Inter as per guidelines */
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-light); /* Use CSS variables for theme */
-    color: var(--text-light); /* Use CSS variables for theme */
-    transition: background-color 0.3s, color 0.3s;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
@@ -13,7 +12,6 @@ header {
     color: #fff;
     padding: 1rem 0;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -30,7 +28,6 @@ nav {
     text-decoration: none;
     font-size: 1.8rem;
     font-weight: bold;
-    border-radius: 5px; /* Rounded corners */
 }
 
 .nav-links {
@@ -45,207 +42,57 @@ nav {
     color: #fff;
     text-decoration: none;
     font-size: 1.1rem;
-    padding: 8px 12px;
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    background-color: #555;
-}
-
-/* Ensure username also adapts to dark mode */
-.nav-links li.username {
-    color: #fff; /* Default light mode color */
-    font-size: 1.1rem;
-    padding: 8px 0;
 }
 
 main {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: var(--bg-light); /* Use CSS variables for theme */
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
 h1, h2 {
-    color: var(--text-light); /* Use CSS variables for theme */
+    color: #333;
     text-align: center;
     margin-bottom: 20px;
 }
-
-/* --- Home Page Specific Styles --- */
 
 .hero-section {
     text-align: center;
-    padding: 80px 20px; /* More vertical padding */
-    background: linear-gradient(135deg, #007bff, #0056b3); /* Blue gradient */
-    color: #fff;
-    border-radius: 12px; /* More rounded corners */
-    margin-bottom: 40px; /* More space below */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow */
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 50px 20px;
+    background-color: #e2e2e2;
+    border-radius: 8px;
+    margin-bottom: 30px;
 }
 
 .hero-section h1 {
-    font-size: 3.5rem; /* Larger heading */
+    font-size: 3rem;
     margin-bottom: 15px;
-    color: #fff; /* Ensure white text on dark background */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for pop */
 }
 
-.hero-section .tagline {
-    font-size: 1.5rem; /* Larger tagline */
-    margin-bottom: 40px;
-    opacity: 0.9;
-}
-
-.features-section {
-    padding: 40px 20px;
-    margin-bottom: 40px;
-    background-color: var(--bg-light); /* Use CSS variables for theme */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.features-section h2 {
-    font-size: 2.5rem;
-    color: var(--text-light); /* Use CSS variables for theme */
+.hero-section p {
+    font-size: 1.2rem;
     margin-bottom: 30px;
 }
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px; /* Increased gap */
-}
-
-.feature-card {
-    background-color: var(--bg-light); /* Use CSS variables for theme */
-    border: 1px solid #eee;
-    border-radius: 10px; /* Rounded corners */
-    padding: 25px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.feature-card h3 {
-    font-size: 1.6rem;
-    color: #007bff; /* Highlight feature titles */
-    margin-bottom: 10px;
-}
-
-.feature-card p {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--text-light); /* Use CSS variables for theme */
-}
-
-.call-to-action-section {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #f8f8f8; /* Lighter background for contrast */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    color: var(--text-light); /* Use CSS variables for theme */
-}
-
-.call-to-action-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: var(--text-light); /* Use CSS variables for theme */
-}
-
-.call-to-action-section p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
-.cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between buttons */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
-}
-
-/* --- General Button Styles (Enhanced) --- */
 .btn {
-    display: inline-block;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 8px; /* More rounded corners */
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
-    border: none; /* Ensure no default button border */
-    cursor: pointer;
-}
-
-.btn-primary {
+    display: inline-block; /* Changed from block to inline-block for side-by-side buttons */
     background-color: #007bff;
     color: #fff;
-    border: 2px solid #007bff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px); /* Slight lift on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    border: 2px solid #6c757d;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-    border: 2px solid #dc3545;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.cta-text {
-    margin-top: 25px;
-    font-size: 1.1rem;
-    color: var(--text-light); /* Use CSS variables for theme */
-}
-
-.cta-text a {
-    color: #007bff;
+    padding: 10px 20px;
     text-decoration: none;
-    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Ensure text is centered */
+    cursor: pointer; /* Indicate clickable */
+    border: none; /* Remove default button border */
 }
 
-.cta-text a:hover {
-    text-decoration: underline;
+.btn:hover {
+    background-color: #0056b3;
 }
-
 
 /* Forms */
 form p {
@@ -256,7 +103,6 @@ form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: var(--text-light); /* Ensure label color adapts to theme */
 }
 
 form input[type="text"],
@@ -270,8 +116,22 @@ form select {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    background-color: var(--bg-light); /* Ensure form inputs adapt to theme */
-    color: var(--text-light); /* Ensure form inputs adapt to theme */
+}
+
+form button[type="submit"] {
+    /* Removed width: 100%; from here to allow flexbox to control width */
+    padding: 12px;
+    background-color: #28a745; /* Default green for submit buttons */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #218838;
 }
 
 /* Messages */
@@ -300,7 +160,7 @@ form select {
     border: 1px solid #f5c6cb;
 }
 
-/* Product List & Card */
+/* Product List */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -308,32 +168,24 @@ form select {
 }
 
 .product-card {
-    background-color: var(--bg-light); /* Use CSS variables for theme */
+    background-color: #f9f9f9;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    padding-bottom: 15px;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.product-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+    padding-bottom: 15px; /* Add some padding at the bottom */
 }
 
 .product-card img {
     width: 100%;
-    height: 200px;
+    height: 200px; /* Fixed height for consistency */
     object-fit: cover;
-    display: block;
-    border-radius: 8px 8px 0 0; /* Rounded top corners for image */
+    display: block; /* Remove extra space below image */
 }
 
 .product-card h3 {
     margin: 15px 15px 5px 15px;
     font-size: 1.3rem;
-    color: var(--text-light); /* Use CSS variables for theme */
 }
 
 .product-card h3 a {
@@ -348,16 +200,12 @@ form select {
 .product-card p {
     margin: 5px 15px;
     font-size: 0.95rem;
-    color: var(--text-light); /* Use CSS variables for theme */
 }
 
 /* Product Detail */
 .product-detail {
     text-align: center;
     padding: 20px;
-    background-color: var(--bg-light); /* Use CSS variables for theme */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail .detail-image {
@@ -365,61 +213,66 @@ form select {
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail h1 {
     font-size: 2.5rem;
     margin-bottom: 15px;
-    color: var(--text-light); /* Use CSS variables for theme */
 }
 
 .product-detail p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 10px;
-    color: var(--text-light); /* Use CSS variables for theme */
 }
 
+/* Product Actions (for edit/delete buttons on detail page) */
 .product-actions {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+    margin-top: 20px;
+    display: flex; /* Arrange buttons side-by-side */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 15px; /* Space between buttons */
 }
 
-/* Delete Confirmation Page */
+/* Confirm Delete Page Styling */
 .confirm-delete {
     text-align: center;
-    padding: 30px;
-    background-color: var(--bg-light);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 50px auto;
-}
-
-.confirm-delete h2 {
-    color: #dc3545; /* Red for danger */
-    font-size: 2rem;
-}
-
-.confirm-delete p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    color: var(--text-light);
+    padding: 20px;
 }
 
 .confirm-delete form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-top: 20px;
+    display: flex; /* Arrange buttons side-by-side */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 15px; /* Space between buttons */
 }
 
-.confirm-delete .btn {
-    width: 100%;
+/* Styles for secondary buttons (e.g., "No, Go Back") */
+.btn-secondary {
+    background-color: #6c757d; /* Gray color */
 }
 
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* NEW: More specific rule for the danger button within the confirm-delete form */
+.confirm-delete form .btn-danger {
+    background-color: #dc3545; /* Red color */
+}
+
+.confirm-delete form .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Ensure consistent width for buttons within the confirm-delete form */
+.confirm-delete form .btn,
+.confirm-delete form button[type="submit"] {
+    width: 150px; /* Set a consistent fixed width for both buttons */
+    flex-basis: 150px; /* Explicitly set flex basis */
+    flex-grow: 0; /* Prevent buttons from growing */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+}
 
 /* Footer */
 footer {
@@ -432,83 +285,41 @@ footer {
     border-top-right-radius: 8px;
 }
 
-/* --- Dark Mode Specific Overrides --- */
-body.dark-mode {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-section ul {
+        flex-direction: column;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="number"],
+    form textarea,
+    form select {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    /* Adjust button width for smaller screens if needed, otherwise flex will handle it */
+    .product-actions .btn,
+    .confirm-delete .btn {
+        width: auto; /* Allow buttons to size naturally within flex container */
+        flex-grow: 1; /* Allow them to grow if space permits, but not force 100% */
+    }
 }
 
-body.dark-mode header {
-    background-color: #222;
-}
+/* Styles for Password Toggle (from style-css-password-toggle-day2) */
 
-body.dark-mode .logo a,
-body.dark-mode .nav-links li a,
-body.dark-mode .nav-links li.username {
-    color: var(--text-dark);
-}
-
-body.dark-mode .nav-links li a:hover {
-    background-color: #333;
-}
-
-body.dark-mode main {
-    background-color: #1a1a1a;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode .hero-section h1,
-body.dark-mode .hero-section .tagline,
-body.dark-mode .features-section h2,
-body.dark-mode .feature-card h3,
-body.dark-mode .feature-card p,
-body.dark-mode .call-to-action-section h2,
-body.dark-mode .call-to-action-section p,
-body.dark-mode .cta-text,
-body.dark-mode .product-card h3,
-body.dark-mode .product-card p,
-body.dark-mode .product-detail h1,
-body.dark-mode .product-detail p,
-body.dark-mode .confirm-delete h2,
-body.dark-mode .confirm-delete p,
-body.dark-mode form label,
-body.dark-mode form input[type="text"],
-body.dark-mode form input[type="email"],
-body.dark-mode form input[type="password"],
-body.dark-mode form input[type="number"],
-body.dark-mode form textarea,
-body.dark-mode form select {
-    color: var(--text-dark);
-}
-
-body.dark-mode .hero-section {
-    background: linear-gradient(135deg, #004d99, #002b5c); /* Darker blue gradient */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
-}
-
-body.dark-mode .features-section,
-body.dark-mode .feature-card,
-body.dark-mode .call-to-action-section,
-body.dark-mode .product-card,
-body.dark-mode .product-detail,
-body.dark-mode .confirm-delete {
-    background-color: #222;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    border-color: #444; /* Darker border */
-}
-
-body.dark-mode .feature-card:hover,
-body.dark-mode .product-card:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode footer {
-    background-color: #222;
-}
-
-/* --- Password Toggle Specific Styles (Integrated) --- */
 .password-container {
     position: relative;
     width: 100%; /* Ensure it spans the full width of its parent form element */
@@ -537,70 +348,11 @@ body.dark-mode footer {
     color: #000; /* Darken on hover for feedback */
 }
 
-/* Dark mode adjustments for password toggle */
-body.dark-mode .toggle-password {
-    color: #bbb; /* Lighter color for visibility in dark mode */
-}
-body.dark-mode .toggle-password:hover {
-    color: #fff;
-}
-
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .nav-links li:last-child { /* Reset margin for mobile */
-        margin-right: 0;
-    }
-
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-section .tagline {
-        font-size: 1.2rem;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr; /* Stack features on small screens */
-    }
-
-    .feature-card {
-        margin-bottom: 15px; /* Add space between stacked cards */
-    }
-
-    .info-section ul { /* This rule might be redundant if using features-grid */
-        flex-direction: column;
-    }
-
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"],
-    form input[type="number"],
-    form textarea,
-    form select,
-    .password-container input { /* Include password input in responsive width */
-        width: 100%; /* Full width on smaller screens */
-        padding-right: 10px; /* Reset padding for mobile if toggle not needed or adjusted */
-    }
-
-    .password-container input[type="password"],
-    .password-container input[type="text"] {
-        width: calc(100% - 40px); /* Maintain space for toggle on mobile */
-        padding-right: 35px;
-    }
-
-    .confirm-delete {
-        margin: 20px auto;
-        padding: 20px;
-    }
-}
+/* You might want to review your general form input styles to ensure they don't override this,
+   or add specific rules for this input field if necessary.
+   Example:
+   form input[type="password"] {
+       # Ensure any base input styles are compatible with padding-right
+       # and width adjustments here.
+   }
+*/
