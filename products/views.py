@@ -41,7 +41,6 @@ def product_create(request):
             product = form.save(commit=False)
             product.seller = request.user
             product.save()
-            # NEW: Add a success message
             messages.success(request, f'Product "{product.name}" listed successfully!')
             # CHANGED: Redirect to product_list instead of product_detail
             return redirect('product_list') # <--- THIS IS THE CHANGE
