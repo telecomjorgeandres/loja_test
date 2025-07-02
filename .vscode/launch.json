@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: Django",
+            "type": "debugpy",
+            "request": "launch",
+            "args": [
+                "runserver",
+                "--noreload", // Recommended for debugging to avoid issues with multiple processes
+                "--nothreading" // Also helpful for consistent debugging behavior
+            ],
+            "django": true,
+            "justMyCode": true, // Set to false if you want to step into Django/library code
+            "autoStartBrowser": false,
+            "program": "${workspaceFolder}\\manage.py"
+        }
+    ]
+}
